@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin: 20px 0;
+    color: #333;
+}
+
+.contact-options {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.call-button {
+    background-color: #4CAF50; /* Green for call */
+}
+
+.whatsapp-button {
+    background-color: #25D366; /* WhatsApp green */
+}
+
+.email-button {
+    background-color: #007bff; /* Blue for email */
+}
+
+.contact-button:hover {
+    background-color: #333;
+}
+
+.contact-button i {
+    margin-right: 1px;
+    font-size: 20px;
+}
+
+.social-media {
+    margin: 30px 0;
+}
+
+.social-icon {
+    font-size: 40px;
+    margin: 0 15px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #007bff;
+}
+
+.image-slider {
+    width: 100%;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.slider-container {
+    display: flex;
+    animation: slide 18s infinite;
+}
+
+.slider-container img {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-100%); }
+    40% { transform: translateX(-200%); }
+    60% { transform: translateX(-300%); }
+    80% { transform: translateX(-400%); }
+    100% { transform: translateX(-500%); }
+}
