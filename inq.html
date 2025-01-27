@@ -3,17 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Google Form</title>
+    <title>jas notors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+        #passwordPrompt {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        iframe {
+            border: 0;
+        }
+    </style>
 </head>
 <body>
+    <div id="passwordPrompt">
+        <h2>Enter Password</h2>
+        <input type="password" id="passwordInput" placeholder="Enter password" />
+        <button onclick="checkPassword()">Submit</button>
+        <p id="errorMessage" style="color: red; display: none;">Wrong password. Try again.</p>
+    </div>
     <iframe 
+        id="googleForm" 
         src="https://docs.google.com/forms/d/e/1FAIpQLSf4T1IhCTJYdlmbslCwjtxvrbkP4X9rjQ0gnS5MsWyOvd38Ag/viewform?embedded=true" 
         width="640" 
         height="961" 
+        style="display: none;"
         frameborder="0" 
         marginheight="0" 
         marginwidth="0">
-        Loading…
     </iframe>
+
+    <script>
+        const correctPassword = "jas123";
+
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            const errorMessage = document.getElementById("errorMessage");
+            const passwordPrompt = document.getElementById("passwordPrompt");
+            const googleForm = document.getElementById("googleForm");
+
+            if (input === correctPassword) {
+                passwordPrompt.style.display = "none";
+                googleForm.style.display = "block";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+
+        // Show the password prompt on page load
+        document.getElementById("passwordPrompt").style.display = "flex";
+    </script>
 </body>
 </html>
