@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Savings Calculator</title>
+  <link rel="stylesheet" href="cal.css">
+</head>
+<body>
+  <div class="calculator">
+    <h1>EV Savings Calculator</h1>
+    <p>See how much you can save by switching to an Electric Vehicle!</p>
+
+    <label for="distance">Daily Travel Distance (km):</label>
+    <input type="range" id="distance" min="10" max="100" value="30">
+    <span id="distanceValue">30 km</span>
+
+    <div class="results">
+      <p>Annual Petrol Cost: <span id="petrolCost">₹0</span></p>
+      <p>Annual EV Cost: <span id="evCost">₹0</span></p>
+      <p>You Save: <span id="savings">₹0</span></p>
+    </div>
+    <p>**Additional 6000 per year for servicing</p>
+  </div>
+
+  <script src="cal.js"></script>
+</body>
+</html>
