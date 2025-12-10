@@ -6,89 +6,320 @@
 <title>JAS MOTORS - Vehicle Details</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f0f2f5;
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding-bottom: 40px;
     }
 
     .header {
-        background: #003366;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white;
-        padding: 20px;
+        padding: 40px 20px;
         text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(10px, 10px) scale(1.1); }
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
     }
 
     .header h1 {
-        margin: 0;
-        font-size: 28px;
-        font-weight: bold;
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: slideDown 0.8s ease-out;
     }
 
-    .header p {
-        margin: 5px 0;
-        font-size: 16px;
-        opacity: 0.9;
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .header-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        animation: fadeIn 1s ease-out 0.3s both;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .header-info-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.1);
+        padding: 10px 20px;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .header-info-item:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-2px);
+    }
+
+    .icon {
+        font-size: 20px;
     }
 
     .container {
+        max-width: 900px;
+        margin: -30px auto 0;
         padding: 20px;
+        position: relative;
+        z-index: 2;
     }
 
     .card {
         background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
+        padding: 0;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        overflow: hidden;
+        animation: scaleIn 0.6s ease-out;
     }
 
-    .card h2 {
-        margin-top: 0;
-        color: #003366;
-        border-left: 5px solid #003366;
-        padding-left: 10px;
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
     }
 
-    .detail-item {
-        margin-bottom: 10px;
+    .card-header {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 25px 30px;
+        font-size: 24px;
+        font-weight: 600;
+        border-bottom: 4px solid #667eea;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .details-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    .details-table tr {
+        animation: slideInLeft 0.5s ease-out both;
+        transition: all 0.3s ease;
+    }
+
+    .details-table tr:nth-child(1) { animation-delay: 0.1s; }
+    .details-table tr:nth-child(2) { animation-delay: 0.15s; }
+    .details-table tr:nth-child(3) { animation-delay: 0.2s; }
+    .details-table tr:nth-child(4) { animation-delay: 0.25s; }
+    .details-table tr:nth-child(5) { animation-delay: 0.3s; }
+    .details-table tr:nth-child(n+6) { animation-delay: 0.35s; }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .details-table tr:hover {
+        transform: translateX(5px);
+    }
+
+    .details-table td {
+        padding: 15px 20px;
+        background: #f8f9fa;
         font-size: 16px;
     }
 
-    .detail-item strong {
-        color: #003366;
+    .details-table td:first-child {
+        font-weight: 600;
+        color: #1e3c72;
+        width: 40%;
+        border-radius: 10px 0 0 10px;
+        border-left: 4px solid #667eea;
+    }
+
+    .details-table td:last-child {
+        color: #333;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .loading, .error {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 20px;
+        animation: fadeIn 0.5s ease-out;
     }
 
     .loading {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 18px;
-        color: #555;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255,255,255,0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
     }
 
     .error {
-        text-align: center;
-        font-size: 18px;
-        color: red;
-        margin-top: 30px;
+        background: white;
+        color: #dc3545;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        max-width: 500px;
+        margin: 50px auto;
+    }
+
+    .error::before {
+        content: '⚠️';
+        display: block;
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 32px;
+        }
+
+        .header-info {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .details-table td {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+        }
+
+        .details-table td:first-child {
+            border-radius: 10px 10px 0 0;
+            border-left: none;
+            border-top: 4px solid #667eea;
+            background: #e9ecef;
+        }
+
+        .details-table td:last-child {
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            margin-top: -20px;
+        }
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 5px 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 10px;
     }
 </style>
 </head>
 <body>
 
 <div class="header">
-    <h1>JAS MOTORS</h1>
-    <p><strong>Address:</strong> Chader More, Suti, Murshidabad</p>
-    <p><strong>Phone:</strong> 8906692526, 9647113037</p>
+    <div class="header-content">
+        <h1>🚗 JAS MOTORS</h1>
+        <div class="header-info">
+            <div class="header-info-item">
+                <span class="icon">📍</span>
+                <span>Chader More, Suti, Murshidabad</span>
+            </div>
+            <div class="header-info-item">
+                <span class="icon">📞</span>
+                <span>8906692526, 9647113037</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
-    <div id="loading" class="loading">Loading vehicle details...</div>
-    <div id="error" class="error"></div>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <div>Loading vehicle details...</div>
+    </div>
+    
+    <div id="error" class="error" style="display:none;"></div>
+    
     <div id="details" class="card" style="display:none;">
-        <h2>Vehicle Information</h2>
-        <div id="output"></div>
+        <div class="card-header">
+            🚙 Vehicle Information
+        </div>
+        <div class="card-body">
+            <table id="output" class="details-table"></table>
+        </div>
     </div>
 </div>
 
@@ -100,6 +331,7 @@ const id = params.get("id");
 
 if (!id) {
     document.getElementById("loading").style.display = "none";
+    document.getElementById("error").style.display = "block";
     document.getElementById("error").innerHTML = "No SALE ID provided in URL.";
 } else {
     fetch(apiURL + "?id=" + id)
@@ -108,6 +340,7 @@ if (!id) {
             document.getElementById("loading").style.display = "none";
 
             if (data.error) {
+                document.getElementById("error").style.display = "block";
                 document.getElementById("error").innerHTML = "SALE ID not found.";
                 return;
             }
@@ -117,9 +350,10 @@ if (!id) {
             let html = "";
             for (const key in data) {
                 html += `
-                    <div class="detail-item">
-                        <strong>${key}:</strong> ${data[key]}
-                    </div>
+                    <tr>
+                        <td>${key}</td>
+                        <td>${data[key]}</td>
+                    </tr>
                 `;
             }
 
@@ -127,10 +361,11 @@ if (!id) {
         })
         .catch(err => {
             document.getElementById("loading").style.display = "none";
-            document.getElementById("error").innerHTML = "Error loading data.";
+            document.getElementById("error").style.display = "block";
+            document.getElementById("error").innerHTML = "Error loading data. Please try again.";
         });
 }
 </script>
 
 </body>
-</html>
+    </html>
