@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAS MOTORS - Vehicle Details</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f2f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        background: #003366;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .header p {
+        margin: 5px 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #003366;
+        border-left: 5px solid #003366;
+        padding-left: 10px;
+    }
+
+    .detail-item {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .detail-item strong {
+        color: #003366;
+    }
+
+    .loading {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #555;
+    }
+
+    .error {
+        text-align: center;
+        font-size: 18px;
+        color: red;
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>JAS MOTORS</h1>
+    <p><strong>Address:</strong> Chader More, Suti, Murshidabad</p>
+    <p><strong>Phone:</strong> 8906692526, 9647113037</p>
+</div>
+
+<div class="container">
+    <div id="loading" class="loading">Loading vehicle details...</div>
+    <div id="error" class="error"></div>
+    <div id="details" class="card" style="display:none;">
+        <h2>Vehicle Information</h2>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script>
+const apiURL = "https://script.google.com/macros/s/AKfycbxftnO2OxwVwuZzxkswkLJT-I5kNH4kTRrq3sfhND-7WPCbob0uIszGz4Imvozbnx_c/exec";
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if (!id) {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("error").innerHTML = "No SALE ID provided in URL.";
+} else {
+    fetch(apiURL + "?id=" + id)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("loading").style.display = "none";
+
+            if (data.error) {
+                document.getElementById("error").innerHTML = "SALE ID not found.";
+                return;
+            }
+
+            document.getElementById("details").style.display = "block";
+
+            let html = "";
+            for (const key in data) {
+                html += `
+                    <div class="detail-item">
+                        <strong>${key}:</strong> ${data[key]}
+                    </div>
+                `;
+            }
+
+            document.getElementById("output").innerHTML = html;
+        })
+        .catch(err => {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("error").innerHTML = "Error loading data.";
+        });
+}
+</script>
+
+</body>
+</html>
