@@ -14,60 +14,551 @@
     <meta name="description" content="Jas Motors offers reliable and affordable automotive solutions. Contact us for vehicle servicing, repairs, and more.">
   <meta name="keywords" content="Jas Motors, automotive services, car repairs, vehicle maintenance">
   <meta name="author" content="Jas Motors">
-  <meta name="robots" content="index, follow">
-
-
-    <title>JAS Motors</title>
-    <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index, >
     <link rel="canonical" href="https://jasmotors.github.io">
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAS Motors - Premium Electric Scooters in Murshidabad</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s;
+        }
+
+        .cta-button {
+            background: white;
+            color: #059669;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInUp 1.4s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #059669;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #059669;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .calculator-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calculator-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #059669;
+            text-align: center;
+        }
+
+        .calculator-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .calculator-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #10b981;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 20px;
+            text-align: center;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>JAS Motors</h1>
-    </header>
-    <div class="subheader">
-        <p>Authorized EV Dealer<br>E-Scooty And Parts</p>
-    </div>
+    <!-- Navigation -->
     <nav>
-        <button onclick="changeIframe('https://ananterickshaw.com/')">HOME</button>
-        <button onclick="changeIframe('customer/customer.html')">CUSTOMER</button>
-        <button onclick="changeIframe('Contact/contact.html')">CONTACT</button>
-        <button onclick="changeIframe('about/about.html')">ABOUT</button>
-        <button onclick="changeIframe('PriceCal.html')">Pricing</button>
-        <button onclick="changeIframe('inq.html')">INQ</button>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.jpg" alt="JAS Motors Logo">
+                <span>JAS Motors</span>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </div>
     </nav>
-    <iframe id="content-frame" src="https://ananterickshaw.com/"></iframe>
-    <br>
-    <iframe src=Cal/cal.html></iframe>
-    <script>
-        function changeIframe(src) {
-            document.getElementById('content-frame').src = src;
-        }
-    </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Jas Motors",
-  "url": "https://jasmotors.github.io",
-  "logo": "https://jasmotors.github.io/logo.png",
-  "description": "Reliable automotive solutions for car servicing and repairs.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "suti",
-    "addressLocality": "murshidabad",
-    "postalCode": "742225",
-    "addressCountry": "India"
-  },
-  "telephone": "+918906692526",
-  "openingHours": "Mo-Fr 08:00-18:00",
-  "sameAs": [
-    "https://www.facebook.com/JasMotors",
-    "https://www.instagram.com/JasMotors"
-  ]
-}
-</script>
 
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to JAS Motors</h1>
+        <p>Experience the Future of Sustainable Mobility</p>
+        <p>Premium Electric Scooters in Murshidabad, West Bengal</p>
+        <button class="cta-button" onclick="location.href='#products'">Explore Our Collection</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="products">
+        <div class="container">
+            <h2 class="section-title">Why Choose Electric Scooters?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Cost Effective</h3>
+                    <p>Save up to ₹40,000 annually on fuel costs. Electric scooters cost only ₹0.20-0.30 per km compared to ₹3-4 per km for petrol vehicles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Zero emissions, zero pollution. Contribute to a cleaner environment and reduce your carbon footprint significantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Long Range Battery</h3>
+                    <p>Travel up to 100-150 km on a single charge. Fast charging technology gets you back on the road quickly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Low Maintenance</h3>
+                    <p>Minimal servicing required. No engine oil changes, no frequent part replacements. Save time and money.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Features</h3>
+                    <p>Bluetooth connectivity, GPS tracking, anti-theft alarm, and digital displays for a modern riding experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Powerful Performance</h3>
+                    <p>Instant torque delivery, smooth acceleration, and quiet operation for a premium riding experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Premium Collection</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Electric Scooter 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80" alt="Electric Scooter 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558980664-1db506751c6c?w=800&q=80" alt="Electric Scooter 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1622186477895-f2af6a0f5a97?w=800&q=80" alt="Electric Scooter 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&q=80" alt="Electric Scooter 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80" alt="Electric Scooter 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="calculator-content">
+            <h2>💰 Calculate Your Savings!</h2>
+            <p>Discover how much money you can save by switching from petrol to electric. Use our interactive calculator below to see your real savings.</p>
+            <iframe src="https://jasmotors.github.io/Cal/cal.html" class="calculator-frame" title="Electric Scooter Savings Calculator"></iframe>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title">About JAS Motors</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                    JAS Motors is Murshidabad's premier destination for electric scooters. We are committed to promoting sustainable transportation and helping our community transition to cleaner, more efficient vehicles. With a wide range of premium electric scooters, expert guidance, and exceptional after-sales service, we make going green easy and affordable. Visit our showroom to test ride the latest models and experience the future of mobility today!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Visit Our Showroom</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="color: #059669; margin-bottom: 2rem;">Get In Touch</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            <a href="mailto:jas.motors0@gmail.com" style="color: #10b981; text-decoration: none;">jas.motors0@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>Phone</strong><br>
+                            <a href="tel:890669256" style="color: #10b981; text-decoration: none;">890669256</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Address</strong><br>
+                            Chader More Suti<br>
+                            Murshidabad, West Bengal
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <a href="https://maps.app.goo.gl/IMR444UitthO6aiKR" target="_blank" style="background: #10b981; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: bold; transition: all 0.3s;">Get Directions</a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3643.892!2d88.16!3d24.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDEwJzQ4LjAiTiA4OMKwMDknMzYuMCJF!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section Placeholder -->
+    <section class="features" id="login" style="padding: 60px 20px;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Customer Login</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Login portal coming soon! Track your bookings, service history, and exclusive offers.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 JAS Motors. All rights reserved. | Driving the Electric Revolution in Murshidabad</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚡ Go Green, Go Electric ⚡</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
-</html>
+        </html>
