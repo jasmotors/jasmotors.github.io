@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Price Calculator</title>
+<style>
+:root {
+  --primary: #0a7cff;
+  --primary-dark: #0862cc;
+  --secondary: #00d9ff;
+  --success: #00c853;
+  --danger: #e63946;
+  --bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card: #ffffff;
+  --text-dark: #2d3748;
+  --text-light: #718096;
+  --shadow: 0 10px 40px rgba(0,0,0,0.15);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 440px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.input-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+select, button {
+  width: 100%;
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+select {
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230a7cff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(10, 124, 255, 0.1);
+}
+
+button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(10, 124, 255, 0.4);
+  margin-bottom: 0;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 124, 255, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.mileage-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #00c853 0%, #00a843 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+.variants-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.variant-box {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.variant-box:hover {
+  transform: translateX(5px);
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(10, 124, 255, 0.2);
+}
+
+.variant-box::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.variant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.variant-title {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.warranty-badge {
+  background: var(--primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.battery-info {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 2px dashed #cbd5e0;
+}
+
+.price-label {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price {
+  font-size: 22px;
+  color: var(--danger);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+.error {
+  text-align: center;
+  color: #e63946;
+  font-weight: 600;
+  padding: 20px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .header {
+    font-size: 24px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .price {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">🔋 Battery Price Calculator</div>
+  <div class="subtitle">Select mileage to view all battery variants</div>
+  
+  <div class="input-card">
+    <select id="millage">
+      <option value="">Select Mileage (KM)</option>
+      <option>45</option>
+      <option>50</option>
+      <option>55</option>
+      <option>60</option>
+      <option>70</option>
+      <option>80</option>
+      <option>90</option>
+      <option>100</option>
+      <option>110</option>
+      <option>120</option>
+      <option>130</option>
+      <option>140</option>
+      <option>150</option>
+    </select>
+    
+    <button onclick="getBatteryPrices()" id="checkBtn">Check Battery Prices</button>
+  </div>
+  
+  <div id="result"></div>
+</div>
+
+<script>
+const DEFAULT_MODEL = "MARSH"; // Using MARSH as default model
+
+async function getBatteryPrices() {
+  const millage = document.getElementById("millage").value;
+  const result = document.getElementById("result");
+  const checkBtn = document.getElementById("checkBtn");
+  
+  if (!millage) {
+    alert("Please select mileage");
+    return;
+  }
+  
+  result.innerHTML = '<div class="loading">Loading battery variants</div>';
+  checkBtn.disabled = true;
+  
+  try {
+    const url = `https://script.google.com/macros/s/AKfycbxUij2LxZCOklkrvKvbtIT9EgClyFKI6reMxwytpaH2UIBeSEQvmGWiVOeFHBZYluG-cg/exec?Model=${DEFAULT_MODEL}&Millage=${millage}`;
+    
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    if (data.status !== "success" || !data.battary || data.battary.length === 0) {
+      result.innerHTML = '<div class="card"><div class="error">No battery data found for this mileage</div></div>';
+      checkBtn.disabled = false;
+      return;
+    }
+    
+    let html = `
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Battery Variants Available</div>
+          <div class="mileage-badge">🏍️ ${millage} KM Range</div>
+        </div>
+        
+        <div class="variants-container">
+    `;
+    
+    // Sort batteries by warranty (optional, for better presentation)
+    const sortedBatteries = [...data.battary].sort((a, b) => a.WTY - b.WTY);
+    
+    sortedBatteries.forEach((battery, index) => {
+      html += `
+        <div class="variant-box">
+          <div class="variant-header">
+            <div class="variant-title">🛡️ Warranty Package ${index + 1}</div>
+            <div class="warranty-badge">${battery.WTY} Year${battery.WTY > 1 ? 's' : ''}</div>
+          </div>
+          <div class="battery-info">🔋 Battery: ${battery["V/A"].replace("/", "V / ")}A</div>
+          <div class="price-row">
+            <div class="price-label">Battery Price</div>
+            <div class="price">₹${(battery.Price + 500).toLocaleString('en-IN')}</div>
+          </div>
+        </div>
+      `;
+    });
+    
+    html += `
+        </div>
+      </div>
+    `;
+    
+    result.innerHTML = html;
+  } catch (error) {
+    result.innerHTML = '<div class="card"><div class="error">Error loading data. Please try again.</div></div>';
+    console.error('Error:', error);
+  } finally {
+    checkBtn.disabled = false;
+  }
+}
+
+// Allow Enter key to trigger search
+document.getElementById('millage').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    getBatteryPrices();
+  }
+});
+</script>
+</body>
+        </html>
