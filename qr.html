@@ -347,17 +347,35 @@ if (!id) {
 
             document.getElementById("details").style.display = "block";
 
-            let html = "";
-            for (const key in data) {
-                html += `
-                    <tr>
-                        <td>${key}</td>
-                        <td>${data[key]}</td>
-                    </tr>
-                `;
-            }
+let html = "";
 
-            document.getElementById("output").innerHTML = html;
+for (const key in data) {
+
+    if (key.toLowerCase() === "image") {
+        html += `
+            <tr>
+                <td>${key}</td>
+                <td>
+                    <img 
+                        src="${data[key]}" 
+                        alt="Vehicle Image" 
+                        style="max-width:100%; height:auto; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.2);"
+                    >
+                </td>
+            </tr>
+        `;
+    } else {
+        html += `
+            <tr>
+                <td>${key}</td>
+                <td>${data[key]}</td>
+            </tr>
+        `;
+    }
+}
+
+document.getElementById("output").innerHTML = html;
+
         })
         .catch(err => {
             document.getElementById("loading").style.display = "none";
